@@ -1,0 +1,16 @@
+---
+title: "chemo.org.uk"
+description: |
+  A website with a mix of things, some opinion, some data processing, sometimes a collection of useful things I don't want to loose or forget...
+site: distill::distill_website
+listing: posts
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = FALSE)
+
+# Learn more about creating websites with Distill at:
+# https://rstudio.github.io/distill/website.html
+
+```
+

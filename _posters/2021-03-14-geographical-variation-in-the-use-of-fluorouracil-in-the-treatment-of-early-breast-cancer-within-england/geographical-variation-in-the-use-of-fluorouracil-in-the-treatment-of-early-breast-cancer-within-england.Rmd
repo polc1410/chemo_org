@@ -1,0 +1,36 @@
+---
+title: "Geographical variation in the use of fluorouracil in the treatment of Early Breast Cancer within England"
+description: |
+  Poster presented at British Oncology Pharmacy Association Annual Symposium 2020.
+  
+preview: images/screenshot-www.researchgate.net-2021.03.14-13_59_28.png
+author:
+  - name: Jess Pealing
+  - name: Marga Rodriguez
+  - name: Calum Polwart
+    orcid_id: 0000-0002-4774-6366
+journal: 
+  title: "Journal of Oncology Pharmacy Practice"
+  issn: 1078-1552
+  publisher: Sage Journals
+  volume: 27
+  issue: 2_suppl
+  doi: "10.1177/1078155220985357"
+date: 2020-10-10
+output:
+  distill::distill_article:
+    self_contained: false
+bibliography: references.bib
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = FALSE)
+```
+
+This poster was presented by Jess Pealing at the British Oncology Pharmacy Association Annual Symposium. The poster was developed to review the variation in the use of fluorouracil in the management of Early Breast Cancer within England. The ESMO guidelines[@cardoso2019] no longer recommend the routine use of fluoropyramidines, however, we were aware that many centres continued to use fluorouracil and we sought to identify the extent of variation.
+
+![](images/screenshot-www.researchgate.net-2021.03.14-13_59_28.png){.external}
+
+The abstracts for this meeting are published in the Journal of Oncology Pharmacy Practice[@abstract2021a]. The poster is available on Research Gate[@pealing2020].
+
+A number of people asked following this poster how we developed the map, and we have published a simplified version of the [code on Research Gate](https://www.researchgate.net/publication/344596453_Cancer_Alliance_Map_-_Simplified_Example_Code).

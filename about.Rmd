@@ -1,0 +1,15 @@
+---
+title: "About this site"
+description: |
+---
+This is a website with a mix of things, some opinion, some data processing, sometimes a collection of useful things I don't want to loose or forget...
+  
+chemo.org.uk is server for testing things, playing and experimenting.  If you have a small data project that needs a home, that fits our ethos and genre, get in touch.
+
+If you have useful content that might be worth posting here - let us know.
+
+Content on this site has not been peer reviewed. It is the opinion of the author, and opinions can change or sometimes be wrong.  If you spot a factual error - let us know.  If your opinion is different - feel free to debate, but don't demand we change our opinions.
+
+## How is this site produced?
+
+You can read more about how this site is hosted on our [Servers](Servers.html) page.  The site is written in R Studio using R Markdown with the distill package.  Published pages are uploaded to a private github repository (to hold a version history) and an n8n.io uses a github action to trigger a git pull on the server to download the latest version of the site. The [About Me](About_me.html) page uses the postcards packge.

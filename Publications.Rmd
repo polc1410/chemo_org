@@ -1,0 +1,26 @@
+---
+title: "Publications"
+description: |
+  A summary of my publications, posters etc
+date: "Last updated: `r Sys.Date()`"
+output: distill::distill_article
+listing: posters
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = FALSE)
+```
+
+# Posters
+
+I usually try to publish my posters (things I wrote myself, or was a co-author on) to my [ResearchGate account](https://www.researchgate.net/profile/Calum-Polwart). However, I find Research Gate a bit tricky to navigate to [find those posters](https://www.researchgate.net/profile/Calum-Polwart/publications) sometimes. It is also more of a scientific place, and doesn't provide somewhere to give more of a narrative approach to what the poster was trying to achieve or how it came to be.
+
+My more recent posters follow the format of [Mike Morrison](https://www.youtube.com/redirect?event=video_description&redir_token=QUFFLUhqbU15LUhyNm1lMmFBOXE4Y1JVU3poQXVpclZ4Z3xBQ3Jtc0trVVhjSTRYbm1KdTM1WjB6R2pvekYzbmxPY0dsWmtBYjZrWGtVWjlCUGx6VzRUeVkxVXBoMDJFTkM1WE9lTTVBUDlmVWtOeld2N3VlRG1ONjVVMFVnTG1PR0tGaXRCTVdtV1BHT3dzWkcwN3lGQjAxaw&q=https%3A%2F%2Ftwitter.com%2Fmikemorrison)'s [\#BetterPoster](https://osf.io/ef53g/​) format. This video explains Mike's theory on how scientific posters need to change.
+
+<iframe width="560" height="315" src="https://www.youtube.com/embed/1RwJbhkCA58" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen>
+
+</iframe>
+
+# External Blog Posts
+
+Here is a [link to a blog post](https://www.thedatalab.org/blog/67/high-dose-dexamethasone/), I wrote for the guys over at TheDataLab about High Dose Dexamethasone. Last year Data Lab told me this was one of their most read posts. I continue to keep an eye on the dexamethasone data, and in the future will post a "live" update of that data on here.

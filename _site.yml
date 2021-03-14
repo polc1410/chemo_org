@@ -1,0 +1,40 @@
+name: "chemo.org.uk website"
+title: "chemo.org.uk"
+description: |
+  chemo.org.uk
+output_dir: "_site"
+theme: theme.css
+favicon: images/favicon.ico
+base_url: https://www.chemo.org.uk
+repository_url: https://github.com/polc1410/chemo_org
+compare_updates_url: https://github.com/rstudio/chemo_org/compare/pubv1...master
+creative_commons: CC BY-SA
+twitter:
+  site: "@ShinyBlackShoe"
+navbar:
+  right:
+    - text: "About"
+      menu:
+       - text: "About Site"
+         href: about.html
+       - text: "Author"
+         href: About_me.html
+    - text: "Server"
+      href: Servers.html
+    - icon: fa fa-rss
+      href: index.xml
+      
+  left:
+    - text: "Home"
+      href: index.html
+    - text: "Publications"
+      href: Publications.html
+  search: true
+      
+cookie_consent:
+  style: simple
+  type: express
+  palette: dark
+  lang: en
+  cookies_policy: url
+output: distill::distill_article

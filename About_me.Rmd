@@ -1,0 +1,38 @@
+---
+title: "Calum Polwart"
+image: "images/Calum-Polwart.png"
+links:
+  - label: Twitter
+    url: "https://twitter.com/ShinyBlackShoe"
+  - label: GitHub
+    url: "https://github.com/polc1410"
+  - label: Email
+    url: "mailto:info@chemo.org.uk"
+output:
+  postcards::trestles
+---
+ 
+## Bio
+
+Frank Hermosillo studies neural networks and their applications at Google 
+Brain. His research focuses on differentiable network pruning approximation and 
+decentralized gradient inversion mechanics. He frequently collaborates with 
+researchers who study machine learning, computer vision, and cognitive science.
+His work has been featured in WIRED, The Atlantic, Newsweek, and The New York 
+Times Magazine.
+
+## Education
+
+**Univeristy of Birmingham** | Birmingham, UK
+
+MSc (with Distinction) in Clinical Oncology | 2002-2003
+
+**University of Strathclyde ** | Glasgow, UK
+
+BSc (Hons) in Pharmacy | September 1994 - June 1998
+
+## Experience
+
+**Google Brain** | Principal Investigator | January 2018 - Present
+
+**Netflix** | Research Scientist | June 2014 - December 2017

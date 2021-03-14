@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<rss xmlns:atom="http://www.w3.org/2005/Atom" xmlns:media="http://search.yahoo.com/mrss/" xmlns:content="http://purl.org/rss/1.0/modules/content/" xmlns:dc="http://purl.org/dc/elements/1.1/" version="2.0">
+  <channel>
+    <title>chemo.org.uk</title>
+    <link>https://www.chemo.org.uk</link>
+    <atom:link href="https://www.chemo.org.uk/index.xml" rel="self" type="application/rss+xml"/>
+    <description>chemo.org.uk
+</description>
+    <image>
+      <title>chemo.org.uk</title>
+      <url>https://www.chemo.org.uk/images/favicon.ico</url>
+      <link>https://www.chemo.org.uk</link>
+    </image>
+    <generator>Distill</generator>
+    <lastBuildDate>Fri, 12 Feb 2021 00:00:00 +0000</lastBuildDate>
+    <item>
+      <title>Are the vaccines working?</title>
+      <dc:creator>Calum Polwart</dc:creator>
+      <link>https://www.chemo.org.uk/posts/2021-03-14-are-the-vaccines-working</link>
+      <description>With much attention on the COVID-19 vaccines, I wanted to find a quick and easy way to use publically available data to see if they were working...</description>
+      <guid>https://www.chemo.org.uk/posts/2021-03-14-are-the-vaccines-working</guid>
+      <pubDate>Fri, 12 Feb 2021 00:00:00 +0000</pubDate>
+      <media:content url="https://github.com/polc1410/VaccineEffectiveness/raw/master/Rplot.png" medium="image" type="image/png"/>
+    </item>
+  </channel>
+</rss>

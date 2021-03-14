@@ -1,0 +1,60 @@
+---
+title: "Servers"
+description: |
+  A brief overview of the chemo.org.uk servers.
+author:
+  - name: Calum Polwart 
+    url: https://www.chemo.org.uk
+date: "`r Sys.Date()`"
+output: distill::distill_article
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = FALSE)
+```
+
+# Open Source Platforms
+
+We have a number of open source software platforms running on a Dell Quad Core Server with 16Gb Ram and 1Tb Raid Hard Drives
+
+## Ubuntu Server
+
+We have Ubuntu server that is capable of running virtual instances. It has redundant drives and power, however only a single fixed IP address and support is adhoc. If you need 24/7 uptime - this is not for you. If you want a place to test something before deploying to a bigger better platform this may be helpful.
+
+## [n8n.io Automation](https://n8n.io/)
+
+We have a docker running n8n.io - which provides a platform for integration between various web objects, at the moment this is not eternally accessible. That may be a possibility in the future.
+
+## [R Studio Server](https://r.chemo.org.uk)
+
+We have an R Studio Server running R 4.x - if you have a data analysis application that needs R but can't install it locally this may be useful. Much of what we post here will be about succesful implementation of R code.
+
+Uses include
+
+-   Data collection, retrieval and processing
+
+-   github integration (upload code changes)
+
+-   Report automation including PDF generation through markdown - latex and pandoc
+
+## [Shiny Server](https://shiny.chemo.org.uk)
+
+We have a Shiny Server. Access is behind a password. Shiny is quite new to us, so we aren't quite sure what its main applications could be. We are using it for a learnR application.
+
+## Gaucamole Server
+
+We have a mothballed implementation of [Gaucamole](https://guacamole.apache.org/releases/). If you need remote access to a linux GUI we may well be able to bring this back out of mothball.
+
+## Mail Server
+
+We have a Dovecot IMAP mail server, with a [webmail front end](mail.chemo.org.uk), which is mostly for private use, however may have a role in maintaining n8n.io integrations.
+
+# Technical Stuff
+
+### SSL Certificates
+
+All our servers support SSL through a common certificate \*.chemo.org.uk, which is renewed regularly through [Lets Encrypt](https://letsencrypt.org/docs/faq/)
+
+### Traffic
+
+All inbound traffic is routed through a single server point which is running [nginx](https://www.nginx.com/), and can (and does) re-direct traffic to other servers within the virtual cluster. It could also redirect traffic outside the cluster. This redirection is seamless and secure.
