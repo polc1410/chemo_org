@@ -15,5 +15,26 @@
     "preview": "https://github.com/polc1410/VaccineEffectiveness/raw/master/Rplot.png",
     "last_modified": "2021-03-14T19:51:48+00:00",
     "input_file": {}
+  },
+  {
+    "path": "posts/2021-03-14-High-Dose-Dexamethasone/",
+    "title": "High Dose Dexamethasone",
+    "description": "Guest blog post at The Data Lab about the use of High Dose Dexamethasone.",
+    "author": [
+      {
+        "name": "Brian MacKenna",
+        "url": {}
+      },
+      {
+        "name": "Calum Polwart",
+        "url": {}
+      }
+    ],
+    "date": "2019-11-28",
+    "categories": [],
+    "contents": "\nHere is a link to a blog post, I wrote for the guys over at TheDataLab about High Dose Dexamethasone. Data Lab tells me this was one of their most read posts. I continue to keep an eye on the dexamethasone data, and in the future will post a “live” update of that data on here.\n\n\n\n",
+    "preview": {},
+    "last_modified": "2021-03-14T22:41:16+00:00",
+    "input_file": {}
   }
 ]
