@@ -23,4 +23,4 @@ bibliography: references.bib
 
 Poster presented at British Oncology Pharmacy Association Annual Symposium 2020[@abstract2021]. This poster looked to identify the rate of hospital admission following non-medical prescriber review of patients undergoing systemic anti-cancer therapy, as a measure for service evaluation of Non-Medical Prescribing Clinics.
 
-![](images/screenshot-www.researchgate.net-2021.03.14-22_57_15.png){.external}
+[![](images/screenshot-www.researchgate.net-2021.03.14-22_57_15.png){.external}](https://www.researchgate.net/publication/344558920_Rates_of_hospital_emergency_admission_following_chemotherapy_for_patients_undergoing_review_by_a_Non-Medical_Prescriber_A_useful_metric_for_service_evaluation)
