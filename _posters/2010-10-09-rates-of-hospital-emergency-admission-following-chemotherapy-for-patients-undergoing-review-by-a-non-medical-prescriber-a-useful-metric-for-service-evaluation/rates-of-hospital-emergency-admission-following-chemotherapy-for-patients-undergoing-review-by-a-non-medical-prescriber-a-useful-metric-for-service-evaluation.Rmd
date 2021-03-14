@@ -1,7 +1,8 @@
 ---
 title: "Rates of hospital emergency admission following chemotherapy for patients undergoing review by a Non-Medical Prescriber: A useful metric for service evaluation?"
 description: |
-  A short description of the post.
+  Poster presented at British Oncology Pharmacy Association 2020, describing rates of emergency admission as a service evaluation metric.
+preview: images/screenshot-www.researchgate.net-2021.03.14-22_57_15.png
 author:
   - name: Calum Polwart
     orcid_id: 0000-0002-4774-6366
@@ -13,7 +14,7 @@ journal:
   volume: 27
   issue: 2_suppl
   doi: "10.1177/1078155220985357"
-date: 10-09-2010
+date: 10-09-2020
 output:
   distill::distill_article:
     self_contained: false
