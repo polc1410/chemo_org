@@ -93,8 +93,8 @@ d-appendix a {
 /*-- Additional custom styles --*/
 
 body {
-  background-color: #25244D; !important
-  color: #FFFFFF; !important
+  background-color: #25244D !important;
+  color: #FFFFFF !important;
 }
 .posts-list .metadata .publishedDate {
     color: #2E9CCA;
@@ -117,7 +117,7 @@ d-article p code {
 
 d-article pre {
   color: #383838;
-  background-color: #AAABBB; !important
+  background-color: #AAABBB !important;
   font-weight: 400;
   font-size: 0.9em;
 }
@@ -146,14 +146,43 @@ h1,h2,h3,h4,h5,h6,.h1,.h2,.h3,.h4,.h5,.h6
 }
 
 d-appendix a {
-  colour: #FFFFFF; !important
+  colour: #FFFFFF !important;
 }
 
 d-byline {
-  background-color: #464866; !important
+  background-color: #464866 !important;
 }
 
 d-appendix {
-  background-color: #464866; !important
+  background-color: #464866 !important;
+}
+
+.lightbox.open {
+  position: fixed;
+  z-index: 500;
+  width: 100% !important;
+  height: auto;
+  text-align: center;
+  top: 0;
+  left: 0;
+  transition: background 300ms ease-in-out;
+  background: rgba(0, 0, 0, 0.8);
+}
+
+.lightbox.open img {
+  margin: auto;
+  position: absolute;
+  top: 0;
+  left: 0;
+  bottom: 0;
+  right: 0;
+  width: auto !important;
+  max-width: 95% !important;
+  height: auto !important;
+  max-height: 95% !important;
+}
+
+d-article {
+  contain: unset !important;
 }
 
