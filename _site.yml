@@ -2,7 +2,7 @@ name: "chemo.org.uk website"
 title: "chemo.org.uk"
 description: |
   chemo.org.uk
-output_dir: "_site"
+output_dir: "docs"
 theme: theme.css
 favicon: images/favicon.ico
 base_url: https://www.chemo.org.uk
