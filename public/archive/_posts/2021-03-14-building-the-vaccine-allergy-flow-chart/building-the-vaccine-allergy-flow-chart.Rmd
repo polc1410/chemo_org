@@ -1,0 +1,748 @@
+---
+title: "Building the vaccine allergy flow chart"
+description: |
+  A brief blog describing how we built the flow chart for the UK Chemotherapy Board Guidance for patients with a history of allergic response who are having the coronavirus vaccine.
+author:
+  - name: Calum Polwart
+date: 03-14-2021
+output:
+  distill::distill_article:
+    self_contained: false
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+require(plantuml)
+knitr::knit_engines$set(plantuml = plantuml::plantuml_knit_engine)
+knitr::opts_chunk$set(out.extra = 'class="lightbox"')
+```
+
+# Background
+
+I've recently been doing some work with some colleagues for the [UK Chemotherapy Board](https://www.ukchemotherapyboard.org/) to create guidance for the administration of the COVID-19 vaccine to patients undergoing Systemic Anti-cancer Therapy. For version 3 of the guidance we needed to add a flow diagram to explain the choices of vaccine to be used for patients with a history of allergy and highlight the most common agents including potential cross reacting agents.
+
+Drawing flowhcarts is easy. **If** everyone who is going to edit it has the same software, and sometimes the same version. Otherwise shared edits can get very messy. As I spend a lot of time in text based files like mark-down it seemed only sensible to build the diagram in a text based system. [Plant UML](http://plantuml.com) is just such a system. This post describes how that diagram was built.
+
+You can edit a UML file at . It turns out github will also render a UML file written in plantUML with the file extension .puml with reasonable reliability (see the note later on).
+
+## The Basic Diagram
+
+The very first step is to define a diagram. (If like in this blog post you happen to want to render uml in R Markdown - you need to install the plantuml package in R.)
+
+### UML Diagrams in Markdown
+
+If you are working within Markdown - you need to follow these steps, otherwise simply move to the next section and copy the code blocks to planttext.com or save them as .puml files in github.
+
+    # If you are working in R you would run these commands to
+    # install and load plantuml. (Once the first 2 are run you only need to run the last each time)
+
+    install.packages("devtools")
+    devtools::install_github("rkrug/plantuml")
+    require(plantuml)
+    plantuml_knit_engine_register()
+
+    # You can now insert a code chunk in r which uses `\`\`{plantuml} as the starting line
+
+## A basic diagram, with two choices and an action:
+
+Diagrams start and end with \@start and \@endmul.
+
+To begin a diagram with a black circle use **start**.
+
+To place a decision in the diagram us **if ... then ... else ... endif**
+
+```{plantuml, echo=TRUE}
+@startuml
+  start
+  if (a decision) then (yes)
+    : Do something]
+  else (no)
+    : Do something else]
+  endif
+@endmul
+```
+
+We start by replacing the basic if then else model with our opening questions and actions:
+
+```{plantuml}
+@startuml
+start
+  if (Systemic hypersensitivity reaction to SACT?) then (Yes)
+    : We will need to decide what to do]
+  else (No)
+    : Offer either AstraZeneca or Pfizer Vaccine]
+  endif
+@enduml
+```
+
+We don't actually want to end back at a single end-point, so we should detach from the diagram when we have finished the action (e.g. given a vaccine)
+
+```{plantuml}
+@startuml
+start
+  if (Systemic hypersensitivity reaction to SACT?) then (Yes)
+    : We will need to decide what to do]
+    detach
+  else (No)
+    : Offer either AstraZeneca or Pfizer Vaccine]
+    detach
+  endif
+@enduml
+```
+
+This diagram isn't quite right though, as we need to remember someone could have reacted to other medicines than SACT.
+
+```{plantuml}
+@startuml
+start
+  if (Systemic hypersensitivity reaction to SACT?) then (Yes)
+    : We will need to decide what to do]
+    detach
+  else (No)
+    if (Has the patient has an immediate onset-anaphylaxis  to more than one class of medicine (or unexplained anaphylaxis) in the past?) then (Yes)
+      :Need to decide what to do]
+    else (No)
+      : Offer either AstraZeneca or Pfizer Vaccine]
+      detach
+    endif  
+  endif
+@enduml
+```
+
+We can now add the next layer of decision. If the reaction was not serious enough to require discontinuation of the treatment, they can still have either vaccine provided they havent had other reactions.
+
+```{plantuml}
+@startuml
+start
+  if (Systemic hypersensitivity reaction to SACT?) then (Yes)
+    if (Did reaction result in permanent discontinuation of this treatment?) then (Yes)
+        : still need to decide what to do]
+        detach
+    else (No)
+    endif
+  endif
+  if (Has the patient has an immediate onset-anaphylaxis  to more than one class of medicine (or unexplained anaphylaxis) in the past?) then (Yes)
+      :Need to decide what to do]
+  else (No)
+    : Offer either AstraZeneca or Pfizer Vaccine]
+    detach
+  endif  
+@enduml
+```
+
+```{plantuml}
+@startuml
+start
+  if (Systemic hypersensitivity reaction to SACT?) then (Yes)
+    if (Did reaction result in permanent discontinuation of this treatment?) then (Yes)
+      if (Did this treatment contain polyethylene glycol or a related molecule?) then (Yes)
+        :Decide what to do]
+        detach
+      else (No)
+        : May be OK with either. Check the other rules ! ]
+      endif
+    else (No)
+    endif
+  endif
+  if (Has the patient has an immediate onset-anaphylaxis  to more than one class of medicine (or unexplained anaphylaxis) in the past?) then (Yes)
+    :Need to decide what to do]
+  else (No)
+    : Offer either AstraZeneca or Pfizer Vaccine]
+    detach
+  endif  
+@enduml
+```
+
+Things are starting to take shape! We can add a few extra decisions around prior vaccine safety...
+
+```{plantuml}
+@startuml
+start
+  if (Systemic hypersensitivity reaction to SACT?) then (Yes)
+    if (Did reaction result in permanent discontinuation of this treatment?) then (Yes)
+      if (Did this treatment contain polyethylene glycol or a related molecule?) then (Yes)
+        :Decide what to do]
+        detach
+      else (No)
+      endif
+    else (No)
+    endif
+  endif
+  if (Has the patient has an immediate onset-anaphylaxis  to more than one class of medicine (or unexplained anaphylaxis) in the past?) then (Yes)
+          if (Has the patient had a recent Influenza Vaccine) then (Yes)
+            if (Was there any systemic reaction?) then (No)
+              :Offer AstraZeneca Vaccine]
+              detach
+            else (Yes)
+              :Refer to allergy specialist]
+              detach
+            endif
+          else (No)
+            :Discuss with allergy specialist]
+            detach
+        endif
+  else (No)
+    : Offer either AstraZeneca or Pfizer Vaccine]
+    detach
+  endif  
+@enduml
+```
+
+And now we can go back and answer the remaining question of what to do if you had a prior reaction to something containing PEG
+
+```{plantuml}
+@startuml
+start
+  if (Systemic hypersensitivity reaction to SACT?) then (Yes)
+    if (Did reaction result in permanent discontinuation of this treatment?) then (Yes)
+      if (Did this treatment contain polyethylene glycol or a related molecule?) then (Yes)
+        if (Has the patient had polysorbate-80 (e.g. Docetaxel or Influenza Vaccine without systemic reaction?) then (Yes)
+            :Offer AstraZeneca Vaccine]
+            detach
+        else (No / Unknown)
+            :Refer to allergy specialist]
+            detach
+        endif
+      else (No)
+      endif
+    else (No)
+    endif
+  endif
+  if (Has the patient has an immediate onset-anaphylaxis  to more than one class of medicine (or unexplained anaphylaxis) in the past?) then (Yes)
+          if (Has the patient had a recent Influenza Vaccine) then (Yes)
+            if (Was there any systemic reaction?) then (No)
+              :Offer AstraZeneca Vaccine]
+              detach
+            else (Yes)
+              :Refer to allergy specialist]
+              detach
+            endif
+          else (No)
+            :Discuss with allergy specialist]
+            detach
+        endif
+  else (No)
+    : Offer either AstraZeneca or Pfizer Vaccine]
+    detach
+  endif  
+@enduml
+```
+
+The basic structure of the diagram is now complete. Lets add some cosmetic bits. **skinparam** will allow us to set a few settings - wrapWidth sets the maximum width of the text boxes, padding says how close boxes can get to each other and ConditionEndStyle hline will remove the diamonds when lines rejoin (saving sapce).
+
+```{plantuml}
+@startuml
+skinparam wrapWidth 150
+skinparam Padding 8
+skinparam ConditionEndStyle hline
+
+start
+  if (Systemic hypersensitivity reaction to SACT?) then (Yes)
+    if (Did reaction result in permanent discontinuation of this treatment?) then (Yes)
+      if (Did this treatment contain polyethylene glycol or a related molecule?) then (Yes)
+        if (Has the patient had polysorbate-80 (e.g. Docetaxel or Influenza Vaccine without systemic reaction?) then (Yes)
+            :Offer AstraZeneca Vaccine]
+            detach
+        else (No / Unknown)
+            :Refer to allergy specialist]
+            detach
+        endif
+      else (No)
+      endif
+    else (No)
+    endif
+  endif
+  if (Has the patient has an immediate onset-anaphylaxis  to more than one class of medicine (or unexplained anaphylaxis) in the past?) then (Yes)
+          if (Has the patient had a recent Influenza Vaccine) then (Yes)
+            if (Was there any systemic reaction?) then (No)
+              :Offer AstraZeneca Vaccine]
+              detach
+            else (Yes)
+              :Refer to allergy specialist]
+              detach
+            endif
+          else (No)
+            :Discuss with allergy specialist]
+            detach
+        endif
+  else (No)
+    : Offer either AstraZeneca or Pfizer Vaccine]
+    detach
+  endif  
+@enduml
+```
+
+The wrap command doesn't work for decisions (? bug) so we will need to manually wrap those using \\n as a new line character.
+
+```{plantuml}
+@startuml
+skinparam wrapWidth 150
+skinparam Padding 8
+skinparam ConditionEndStyle hline
+
+start
+  if (Systemic hypersensitivity\nreaction to SACT?) then (Yes)
+    if (Did reaction result in permanent\ndiscontinuation of this treatment?) then (Yes)
+      if (Did this treatment contain\npolyethylene glycol\nor a related molecule?) then (Yes)
+        if (Has the patient had polysorbate-80\n(e.g. Docetaxel or Influenza Vaccine\nwithout systemic reaction?) then (Yes)
+            :Offer AstraZeneca Vaccine]
+            detach
+        else (No / Unknown)
+            :Refer to allergy specialist]
+            detach
+        endif
+      else (No)
+      endif
+    else (No)
+    endif
+  endif
+  if (Has the patient has an immediate onset-anaphylaxis\n to more than one class of medicine\n(or unexplained anaphylaxis) in the past?) then (Yes)
+          if (Has the patient had\na recent Influenza Vaccine) then (Yes)
+            if (Was there any systemic reaction?) then (No)
+              :Offer AstraZeneca Vaccine]
+              detach
+            else (Yes)
+              :Refer to allergy specialist]
+              detach
+            endif
+          else (No)
+            :Discuss with allergy specialist]
+            detach
+        endif
+  else (No)
+    : Offer either AstraZeneca or Pfizer Vaccine]
+    detach
+  endif  
+@enduml
+```
+
+We now have the basic structure of the flow chart. A note to explain which things have "peg" in them would be helpful.
+
+```{plantuml}
+@startuml
+
+note left 
+              Notes on Polyethylene glycol
+              Polyethylene glycol (PEG) may appear in the medicine name (e.g. pegfilgrastim) or the excipients (see section 6.1 of SmPC).
+            
+              Polysorbate is related to PEG.
+            
+              Polyoxyl 35 castor oil is a pegylated oil.
+              ....
+              Common cancer treatments that contains PEG or PEG relatives:
+
+              * Cabazitaxel (1)
+              * Caelyx (Liposomal Doxorubicin) (2)
+              * Docetaxel (1)
+              * Lipegfilgrastim (2)
+              * Most monoclonal antibodies (drugs ending -mab) (3)
+              * Paclitaxel (but not Abraxane) (4)
+              * Pegaspargase (2)
+              * Pegfilgrastim (2)
+
+            end note
+@enduml
+```
+
+We obviously need to add a key to explain the numerical footnotes. (Actually during development of the diagram we tested a number of footnote methods - but settled on numerical notes as the easiest approach).
+
+```{plantuml}
+@startuml
+legend   right
+    Key:
+    1 contains polsorbate-80 
+    2 molecule has a polyethylene glycol chain attached 
+    3 contains polysorbate-20
+    4 contains Polyoxyl 35 castor oil
+EndLegend
+@enduml
+```
+
+We can then add some style, using a mix of CSS style and markup.
+
+```{plantuml}
+@startuml
+
+note left #white
+              **__Notes on Polyethylene glycol__**
+              Polyethylene glycol (PEG) may appear in the medicine name (e.g. //peg//filgrastim) __or__ the excipients (see section 6.1 of SmPC).
+            
+              Polysorbate is //related// to PEG.
+            
+              Polyoxyl 35 castor oil is a pegylated oil.
+              ....
+              //Common// cancer treatments that contains PEG or PEG relatives:
+
+              ** Cabazitaxel <color:#ffffff><back:#696969>** 1 **</back></color>
+              ** Caelyx (Liposomal Doxorubicin) <color:#ffffff><back:#696969>** 2 **</back></color>
+              ** Docetaxel <color:#ffffff><back:#696969>** 1 **</back></color>
+              ** Lipegfilgrastim <color:#ffffff><back:#696969>** 2 **</back></color>
+              ** Most monoclonal antibodies (drugs ending -mab) <back:#696969>** 3 **</back></color>
+              ** Paclitaxel (but not Abraxane) <color:#ffffff><back:#696969>** 4 **</back></color>
+              ** Pegaspargase <color:#ffffff><back:#696969>** 2 **</back></color>
+              ** Pegfilgrastim <color:#ffffff><back:#696969>** 2 **</back></color>
+
+            end note
+              
+              legend   right
+    **Key:**
+    <color:#ffffff><back:#696969>** 1 **</back></color> contains polsorbate-80 
+    <color:#ffffff><back:#696969>** 2 **</back></color> molecule has a polyethylene glycol chain attached 
+    <color:#ffffff><back:#696969>** 3 **</back></color> contains polysorbate-20
+    <color:#ffffff><back:#696969>** 4 **</back></color> contains Polyoxyl 35 castor oil
+EndLegend
+@enduml
+```
+
+We can then add the note and legend to the original diagram and add some markdown to the diagram.
+
+```{plantuml}
+@startuml
+skinparam wrapWidth 150
+skinparam Padding 8
+skinparam ConditionEndStyle hline
+start
+If (Systemic hypersensitivity\n reaction to SACT?) then
+    -> Yes;
+
+    If (Did reaction result in permanent\ndiscontinuation of this treatment?) then
+        -> Yes;
+
+        If (Did this treatment contain\n **polyethylene glycol** \nor a //related// molecule?) then
+            -> Yes;
+            note left
+              **__Notes on Polyethylene glycol__**
+              Polyethylene glycol (PEG) may appear in the medicine name (e.g. //peg//filgrastim) __or__ the excipients (see section 6.1 of SmPC).
+
+              Polysorbate is //related// to PEG.
+
+              Polyoxyl 35 castor oil is a pegylated oil.
+              ....
+              //Common// cancer treatments that contains PEG or PEG relatives:
+
+              ** Cabazitaxel <color:#ffffff><back:#696969>** 1 **</back></color>
+              ** Caelyx (Liposomal Doxorubicin) <color:#ffffff><back:#696969>** 2 **</back></color>
+              ** Docetaxel <color:#ffffff><back:#696969>** 1 **</back></color>
+              ** Lipegfilgrastim <color:#ffffff><back:#696969>** 2 **</back></color>
+              ** Most monoclonal antibodies (drugs ending -mab) <color:#ffffff><back:#696969>** 3 **</back></color>
+              ** Paclitaxel (but not Abraxane) <color:#ffffff><back:#696969>** 4 **</back></color>
+              ** Pegaspargase <color:#ffffff><back:#696969>** 2 **</back></color>
+              ** Pegfilgrastim <color:#ffffff><back:#696969>** 2 **</back></color>
+
+            end note
+
+        If (Has the patient had \npolysorbate-80 (e.g. Docetaxel<color:#ffffff><back:#696969>** 1 **</back></color>\nor Influenza Vaccine<color:#ffffff><back:#696969>** 1 **</back></color>)\nwithout **systemic** reaction?) then
+            -> Yes;   
+            #LawnGreen:Offer AstraZeneca Vaccine<color:#ffffff><back:#696969>** 1 **</back></color>]
+            detach
+
+        Else (No / Unknown)
+            #Red:Refer to allergy specialist]
+            detach
+        EndIf
+
+    Else (No)
+
+    EndIf
+
+    Else(No)
+
+    EndIf
+
+Else(No)
+
+EndIf
+    If (Has the patient has an immediate onset-anaphylaxis\n to more than one class of medicine\n (or unexplained anaphylaxis) in the past?) then
+        -> Yes;
+
+        If (Has the patient had\n a recent Influenza Vaccine<color:#ffffff><back:#696969>** 1 **</back></color>?) then
+            -> Yes;  
+
+            If (Was there any **systemic** reaction?) then
+                -> No;  
+
+                #LawnGreen:Offer AstraZeneca Vaccine<color:#ffffff><back:#696969>** 1 **</back></color>]
+                detach
+
+            Else (Yes)
+                #Red:Refer to allergy specialist]
+                detach
+
+            EndIf
+
+        Else (No)
+
+            #Orange:Discuss with allergy specialist]
+            detach
+
+        EndIf
+
+    Else (No)
+
+            #LawnGreen:Offer either AstraZeneca or Pfizer Vaccine]
+            detach
+    EndIf
+
+legend   right
+    **Key:**
+    <color:#ffffff><back:#696969>** 1 **</back></color> contains polsorbate-80 
+    <color:#ffffff><back:#696969>** 2 **</back></color> molecule has a polyethylene glycol chain attached 
+    <color:#ffffff><back:#696969>** 3 **</back></color> contains polysorbate-20
+    <color:#ffffff><back:#696969>** 4 **</back></color> contains Polyoxyl 35 castor oil
+EndLegend
+@enduml
+```
+
+Finally, we have an almost complete diagram. It needs a title, and a copyright footer so that people can legitimately reproduce it in a local SOP etc. And we will add a few extra style features
+
+```{plantuml}
+@startuml
+skinparam wrapWidth 150
+skinparam NoteFontSize 10
+skinparam LegendFontSize 10
+skinparam Padding 8
+skinparam ConditionEndStyle hline
+
+Title Decision aid for selection of coronavirus vaccine in patients with\na  history of allergic reaction to Systemic Anti-Cancer Therapies (SACT)\n
+
+start
+If (Systemic hypersensitivity\n reaction to SACT?) then
+    -> Yes;
+
+    If (Did reaction result in permanent\ndiscontinuation of this treatment?) then
+        -> Yes;
+
+        If (Did this treatment contain\n **polyethylene glycol** \nor a //related// molecule?) then
+            -> Yes;
+            note left
+              **__Notes on Polyethylene glycol__**
+              Polyethylene glycol (PEG) may appear in the medicine name (e.g. //peg//filgrastim) __or__ the excipients (see section 6.1 of SmPC).
+
+              Polysorbate is //related// to PEG.
+
+              Polyoxyl 35 castor oil is a pegylated oil.
+              ....
+              //Common// cancer treatments that contains PEG or PEG relatives:
+
+              ** Cabazitaxel <color:#ffffff><back:#696969>** 1 **</back></color>
+              ** Caelyx (Liposomal Doxorubicin) <color:#ffffff><back:#696969>** 2 **</back></color>
+              ** Docetaxel <color:#ffffff><back:#696969>** 1 **</back></color>
+              ** Lipegfilgrastim <color:#ffffff><back:#696969>** 2 **</back></color>
+              ** Most monoclonal antibodies (drugs ending -mab) <color:#ffffff><back:#696969>** 3 **</back></color>
+              ** Paclitaxel (but not Abraxane) <color:#ffffff><back:#696969>** 4 **</back></color>
+              ** Pegaspargase <color:#ffffff><back:#696969>** 2 **</back></color>
+              ** Pegfilgrastim <color:#ffffff><back:#696969>** 2 **</back></color>
+
+            end note
+
+        If (Has the patient had \npolysorbate-80 (e.g. Docetaxel<color:#ffffff><back:#696969>** 1 **</back></color>\nor Influenza Vaccine<color:#ffffff><back:#696969>** 1 **</back></color>)\nwithout **systemic** reaction?) then
+            -> Yes;   
+            #LawnGreen:Offer AstraZeneca Vaccine<color:#ffffff><back:#696969>** 1 **</back></color>]
+            detach
+
+        Else (No / Unknown)
+            #Red:Refer to allergy specialist]
+            detach
+        EndIf
+
+    Else (No)
+
+    EndIf
+
+    Else(No)
+
+    EndIf
+
+Else(No)
+
+EndIf
+    If (Has the patient has an immediate onset-anaphylaxis\n to more than one class of medicine\n (or unexplained anaphylaxis) in the past?) then
+        -> Yes;
+
+        If (Has the patient had\n a recent Influenza Vaccine<color:#ffffff><back:#696969>** 1 **</back></color>?) then
+            -> Yes;  
+
+            If (Was there any **systemic** reaction?) then
+                -> No;  
+
+                #LawnGreen:Offer AstraZeneca Vaccine<color:#ffffff><back:#696969>** 1 **</back></color>]
+                detach
+
+            Else (Yes)
+                #Red:Refer to allergy specialist]
+                detach
+
+            EndIf
+
+        Else (No)
+
+            #Orange:Discuss with allergy specialist]
+            detach
+
+        EndIf
+
+    Else (No)
+
+            #LawnGreen:Offer either AstraZeneca or Pfizer Vaccine]
+            detach
+    EndIf
+
+legend   right
+    **Key:**
+    <color:#ffffff><back:#696969>** 1 **</back></color> contains polsorbate-80 
+    <color:#ffffff><back:#696969>** 2 **</back></color> molecule has a polyethylene glycol chain attached 
+    <color:#ffffff><back:#696969>** 3 **</back></color> contains polysorbate-20
+    <color:#ffffff><back:#696969>** 4 **</back></color> contains Polyoxyl 35 castor oil
+EndLegend
+@enduml
+```
+
+This is the figure we published in version 3 of the guidelines. Since then we have had some useful feedback and so there is a slighlty updated version. Firstly Bruce Burnett reminded us to be more colourblind friendly. On Bruce's advice, we have removed the coloured boxes and replaced them with coloured boundaries on the boxes. And based on user feedback, we have clarified that mono-clonal antibodies could contain polysorbate 20 or 80.
+
+```{plantuml}
+@startuml
+<style>
+note {
+  LineColor black
+  FontSize 10
+  }
+activity {
+  LineColor black
+  .red {
+    LineColor red
+    LineThickness 5
+  }
+    .orange {
+    LineColor orange
+    LineThickness 5
+  }
+    .green {
+    LineColor lawngreen
+    LineThickness 5
+    }
+}
+legend {
+  FontSize 10
+}
+</style>
+skinparam wrapWidth 150
+skinparam Padding 8
+skinparam ConditionEndStyle hline
+' skinparam monochrome true
+skinparam ArrowColor black
+
+
+Title Decision aid for selection of coronavirus vaccine in patients with\na  history of allergic reaction to Systemic Anti-Cancer Therapies (SACT)\n
+start
+If (Systemic hypersensitivity\n reaction to SACT?) then
+    -> Yes;
+
+    If (Did reaction result in permanent\ndiscontinuation of this treatment?) then
+        -> Yes;
+
+        If (Did this treatment contain\n **polyethylene glycol** \nor a //related// molecule?) then
+            -> Yes;
+            note left #white
+              **__Notes on Polyethylene glycol__**
+              Polyethylene glycol (PEG) may appear in the medicine name (e.g. //peg//filgrastim) __or__ the excipients (see section 6.1 of SmPC).
+            
+              Polysorbate is //related// to PEG.
+            
+              Polyoxyl 35 castor oil is a pegylated oil.
+              ....
+              //Common// cancer treatments that contains PEG or PEG relatives:
+
+              ** Cabazitaxel <color:#ffffff><back:#696969>** 1 **</back></color>
+              ** Caelyx (Liposomal Doxorubicin) <color:#ffffff><back:#696969>** 2 **</back></color>
+              ** Docetaxel <color:#ffffff><back:#696969>** 1 **</back></color>
+              ** Lipegfilgrastim <color:#ffffff><back:#696969>** 2 **</back></color>
+              ** Most monoclonal antibodies (drugs ending -mab) <color:#ffffff><back:#696969>** 1 **</back></color><color:#ffffff>, <back:#696969>** 3 **</back></color>
+              ** Paclitaxel (but not Abraxane) <color:#ffffff><back:#696969>** 4 **</back></color>
+              ** Pegaspargase <color:#ffffff><back:#696969>** 2 **</back></color>
+              ** Pegfilgrastim <color:#ffffff><back:#696969>** 2 **</back></color>
+
+            end note
+
+        If (Has the patient had \npolysorbate-80 (e.g. Docetaxel<color:#ffffff><back:#696969>** 1 **</back></color>\nor Influenza Vaccine<color:#ffffff><back:#696969>** 1 **</back></color>)\nwithout **systemic** reaction?) then
+            -> Yes;   
+            <<green>>:Offer AstraZeneca Vaccine<color:#ffffff><back:#696969>** 1 **</back></color>]
+            detach
+
+        Else (No / Unknown)
+            <<Red>>:Refer to allergy specialist]
+            detach
+        EndIf
+
+    Else (No)
+
+    EndIf
+
+    Else(No)
+
+    EndIf
+    
+Else(No)
+
+EndIf
+    If (Has the patient has an immediate onset-anaphylaxis\n to more than one class of medicine\n (or unexplained anaphylaxis) in the past?) then
+        -> Yes;
+    
+        If (Has the patient had\n a recent Influenza Vaccine<color:#ffffff><back:#696969>** 1 **</back></color>?) then
+            -> Yes;  
+
+            If (Was there any **systemic** reaction?) then
+                -> No;  
+                
+                <<green>>:Offer AstraZeneca Vaccine<color:#ffffff><back:#696969>** 1 **</back></color>]
+                detach
+                
+            Else (Yes)
+                <<Red>>:Refer to allergy specialist]
+                detach
+                
+            EndIf
+        
+        Else (No)
+    
+            <<Orange>>:Discuss with allergy specialist]
+            detach
+            
+        EndIf
+
+    Else (No)
+
+            <<green>>:Offer either AstraZeneca or Pfizer Vaccine]
+            detach
+    EndIf
+
+legend   right
+    **Key:**
+    <color:#ffffff><back:#696969>** 1 **</back></color> contains polsorbate-80 
+    <color:#ffffff><back:#696969>** 2 **</back></color> molecule has a polyethylene glycol chain attached 
+    <color:#ffffff><back:#696969>** 3 **</back></color> contains polysorbate-20
+    <color:#ffffff><back:#696969>** 4 **</back></color> contains Polyoxyl 35 castor oil
+EndLegend
+footer 
+    This work is licensed under CC BY-SA 4.0. To view a copy of this license, visit http://creativecommons.org/licenses/by-sa/4.0/.
+    Please ensure you are using the most up to date version by accessing ukchemotherapyboard.org
+EndFooter
+@enduml
+```
+
+```{js}
+$(document).ready(function () {
+    $('.lightbox').each(function () {
+        $(this).click(function (e) {
+            var classes = $(this).attr('class').split(/\s+/);
+            if(classes.includes('open'))
+            {
+                $(this).removeClass('open');
+            }
+            else
+            {
+                $(this).addClass('open');
+            }
+        });
+    });
+});
+```

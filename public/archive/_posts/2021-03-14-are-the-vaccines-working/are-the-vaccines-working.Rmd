@@ -1,0 +1,66 @@
+---
+title: "Are the vaccines working?"
+description: |
+  With much attention on the COVID-19 vaccines, I wanted to find a quick and easy way to use publically available data to see if they were working...
+preview: https://github.com/polc1410/VaccineEffectiveness/raw/master/Rplot.png
+author:
+  - name: Calum Polwart
+date: 02-12-2021
+output:
+  distill::distill_article:
+    self_contained: false
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+
+# Why
+
+There is a lot of vaccine scepticism, which means even if government published vaccine effects are shared, there will be a cohort of people who will still have doubts. If we could use publicly available data that would be hard for a government to have doctored to generate some visualisation we might be able to see if the vaccine is working.
+
+# How
+
+## Data Sources
+
+We can obtain the rates of new infection by age from the UK Government website.
+
+```{r}
+#
+```
+
+## Comparator
+
+The early vaccine campaign in the UK concentrated on patients over 80 years of age, and front-line healthcare staff. Therefore we should be able to compare the over 80 population to the rest of the population. As the roll-out matures, we will need to add Over 70's and then younger groups.
+
+```{r}
+#
+
+```
+
+## Outcome
+
+Defining what outcome we are looking for with the vaccine campaign is an interesting debate which could be the subject of a very long blog post in its self. The clinical trials reduced hospital admissions and serious infection rates, however, only the AstraZeneca vaccine checked participants for mild / asymptomatic infection. It is even harder to explicitly check for transmission. We could use hospital admissions, we could use deaths. However, both have a lag from infection, and reducing infection is likely to reduce the rate of hospital admission and death.
+
+## Analysis
+
+All the analysis is within the R code described below, using the initial steps described above.
+
+I started planning this process in late December 2020, before the UK's third lock-down was announced. Infection falling does not guarantee that the fall is the result of vaccination, it could be the effect of lock-down. We will therefore need to make some comparisons with previous lock-downs. The first UK lock-down was in late March 2020 however, testing capacity was significantly constrained at the time so the data on infection rates is unreliable. The second lock-down was not as intensive, or long as the first or third, however we should include that data for comparison.
+
+# Results
+
+The aim is to visualise the results, so we should produce a graph.
+
+```{r}
+#
+
+```
+
+![](https://github.com/polc1410/VaccineEffectiveness/raw/master/Rplot.png)
+
+# Conclusions
+
+The rate of infection in November Lockdown for over 80s fell slower than the rate of infection for the under 70-79s and under 70s. Both the 70-79s and under 70s age groups fell at very similar rates. The number of infections in the 70-79 age group and over 80s is roughly similar and therefore this is unlikely to simply be a numbers issue.
+
+In the January Lockdown

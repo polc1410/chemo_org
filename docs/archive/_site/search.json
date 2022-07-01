@@ -1,0 +1,50 @@
+{
+  "articles": [
+    {
+      "path": "About_me.html",
+      "title": "Calum Polwart",
+      "author": [],
+      "contents": "\n\n    \n    \n      \n        \n          \n            \n              \n            \n              Calum Polwart\n            \n            \n              \n                \n                    \n                      \n                        Twitter\n                      \n                    \n                  \n                                    \n                    \n                      \n                        GitHub\n                      \n                    \n                  \n                                    \n                    \n                      \n                        Email\n                      \n                    \n                  \n                                  \n            \n          \n        \n        \n        \n          \n            \n            Bio\n            Frank Hermosillo studies neural networks and their applications at Google Brain. His research focuses on differentiable network pruning approximation and decentralized gradient inversion mechanics. He frequently collaborates with researchers who study machine learning, computer vision, and cognitive science. His work has been featured in WIRED, The Atlantic, Newsweek, and The New York Times Magazine.\n            \n            \n            Education\n            Univeristy of Birmingham | Birmingham, UK\n            MSc (with Distinction) in Clinical Oncology | 2002-2003\n            University of Strathclyde  | Glasgow, UK\n            BSc (Hons) in Pharmacy | September 1994 - June 1998\n            \n            \n            Experience\n            Google Brain | Principal Investigator | January 2018 - Present\n            Netflix | Research Scientist | June 2014 - December 2017\n            \n          \n        \n      \n    \n\n    \n      \n        \n          \n            \n              \n            \n              Calum Polwart\n            \n            \n              \n                \n                                    \n                    \n                      Twitter\n                    \n                  \n                                    \n                    \n                      GitHub\n                    \n                  \n                                    \n                    \n                      Email\n                    \n                  \n                                  \n              \n            \n            \n              \n              Bio\n              Frank Hermosillo studies neural networks and their applications at Google Brain. His research focuses on differentiable network pruning approximation and decentralized gradient inversion mechanics. He frequently collaborates with researchers who study machine learning, computer vision, and cognitive science. His work has been featured in WIRED, The Atlantic, Newsweek, and The New York Times Magazine.\n              \n              \n              Education\n              Univeristy of Birmingham | Birmingham, UK\n              MSc (with Distinction) in Clinical Oncology | 2002-2003\n              University of Strathclyde  | Glasgow, UK\n              BSc (Hons) in Pharmacy | September 1994 - June 1998\n              \n              \n              Experience\n              Google Brain | Principal Investigator | January 2018 - Present\n              Netflix | Research Scientist | June 2014 - December 2017\n              \n            \n        \n      \n    \n\n    \n    \n    ",
+      "last_modified": "2021-03-20T01:52:39+00:00"
+    },
+    {
+      "path": "about.html",
+      "title": "About this site",
+      "author": [],
+      "contents": "\nThis is a website with a mix of things, some opinion, some data processing, sometimes a collection of useful things I don’t want to loose or forget…\nchemo.org.uk is server for testing things, playing and experimenting. If you have a small data project that needs a home, that fits our ethos and genre, get in touch.\nIf you have useful content that might be worth posting here - let us know.\nContent on this site has not been peer reviewed. It is the opinion of the author, and opinions can change or sometimes be wrong. If you spot a factual error - let us know. If your opinion is different - feel free to debate, but don’t demand we change our opinions.\nHow is this site produced?\nYou can read more about how this site is hosted on our Servers page. The site is written in R Studio using R Markdown with the distill package. Published pages are uploaded to a private github repository (to hold a version history) and an n8n.io uses a github action to trigger a git pull on the server to download the latest version of the site. The About Me page uses the postcards packge.\n\n\n\n",
+      "last_modified": "2021-03-20T01:52:39+00:00"
+    },
+    {
+      "path": "index.html",
+      "title": "chemo.org.uk",
+      "description": "A website with a mix of things, some opinion, some data processing, sometimes a collection of useful things I don't want to loose or forget...\n",
+      "author": [],
+      "contents": "\n\n\n\n",
+      "last_modified": "2021-03-20T01:52:41+00:00"
+    },
+    {
+      "path": "Publications.html",
+      "title": "Publications",
+      "description": "A summary of my publications, posters etc\n",
+      "author": [],
+      "date": "Last updated: `r Sys.Date()`",
+      "contents": "\nPosters\nI usually try to publish my posters (things I wrote myself, or was a co-author on) to my ResearchGate account. However, I find Research Gate a bit tricky to navigate to find those posters sometimes. It is also more of a scientific place, and doesn’t provide somewhere to give more of a narrative approach to what the poster was trying to achieve or how it came to be.\nMy more recent posters follow the format of Mike Morrison’s #BetterPoster format. This video explains Mike’s theory on how scientific posters need to change.\n\n\n\n\n\n",
+      "last_modified": "2021-03-20T01:52:42+00:00"
+    },
+    {
+      "path": "Servers.html",
+      "title": "Servers",
+      "description": "A brief overview of the chemo.org.uk servers.\n",
+      "author": [
+        {
+          "name": "Calum Polwart",
+          "url": "https://www.chemo.org.uk"
+        }
+      ],
+      "date": "`r Sys.Date()`",
+      "contents": "\nOpen Source Platforms\nWe have a number of open source software platforms running on a Dell Quad Core Server with 16Gb Ram and 1Tb Raid Hard Drives\nUbuntu Server\nWe have Ubuntu server that is capable of running virtual instances. It has redundant drives and power, however only a single fixed IP address and support is adhoc. If you need 24/7 uptime - this is not for you. If you want a place to test something before deploying to a bigger better platform this may be helpful.\nn8n.io Automation\nWe have a docker running n8n.io - which provides a platform for integration between various web objects, at the moment this is not eternally accessible. That may be a possibility in the future.\nR Studio Server\nWe have an R Studio Server running R 4.x - if you have a data analysis application that needs R but can’t install it locally this may be useful. Much of what we post here will be about succesful implementation of R code.\nUses include\nData collection, retrieval and processing\ngithub integration (upload code changes)\nReport automation including PDF generation through markdown - latex and pandoc\nShiny Server\nWe have a Shiny Server. Access is behind a password. Shiny is quite new to us, so we aren’t quite sure what its main applications could be. We are using it for a learnR application.\nGaucamole Server\nWe have a mothballed implementation of Gaucamole. If you need remote access to a linux GUI we may well be able to bring this back out of mothball.\nMail Server\nWe have a Dovecot IMAP mail server, with a webmail front end, which is mostly for private use, however may have a role in maintaining n8n.io integrations.\nTechnical Stuff\nSSL Certificates\nAll our servers support SSL through a common certificate *.chemo.org.uk, which is renewed regularly through Lets Encrypt\nTraffic\nAll inbound traffic is routed through a single server point which is running nginx, and can (and does) re-direct traffic to other servers within the virtual cluster. It could also redirect traffic outside the cluster. This redirection is seamless and secure.\n\n\n\n",
+      "last_modified": "2021-03-20T01:52:43+00:00"
+    }
+  ],
+  "collections": ["posts/posts.json", "posters/posters.json"]
+}

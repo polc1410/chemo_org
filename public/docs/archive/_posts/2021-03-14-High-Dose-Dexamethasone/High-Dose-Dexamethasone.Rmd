@@ -1,0 +1,21 @@
+---
+title: "High Dose Dexamethasone"
+description: |
+  Guest blog post at The Data Lab about the use of High Dose Dexamethasone.
+  
+preview: images/screenshot-www.researchgate.net-2021.03.14-13_59_28.png
+author:
+  - name: Brian MacKenna
+  - name: Calum Polwart
+    orcid_id: 0000-0002-4774-6366
+date: 2019-11-28
+output:
+  distill::distill_article:
+    self_contained: false
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = FALSE)
+```
+
+Here is a [link to a blog post](https://www.thedatalab.org/blog/67/high-dose-dexamethasone/), I wrote for the guys over at TheDataLab about High Dose Dexamethasone. Data Lab tells me this was one of their most read posts. I continue to keep an eye on the dexamethasone data, and in the future will post a "live" update of that data on here.

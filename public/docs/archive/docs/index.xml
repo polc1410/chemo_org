@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<rss xmlns:atom="http://www.w3.org/2005/Atom" xmlns:media="http://search.yahoo.com/mrss/" xmlns:content="http://purl.org/rss/1.0/modules/content/" xmlns:dc="http://purl.org/dc/elements/1.1/" version="2.0">
+  <channel>
+    <title>chemo.org.uk</title>
+    <link>https://www.chemo.org.uk</link>
+    <atom:link href="https://www.chemo.org.uk/index.xml" rel="self" type="application/rss+xml"/>
+    <description>chemo.org.uk
+</description>
+    <image>
+      <title>chemo.org.uk</title>
+      <url>https://www.chemo.org.uk/images/favicon.ico</url>
+      <link>https://www.chemo.org.uk</link>
+    </image>
+    <generator>Distill</generator>
+    <lastBuildDate>Sun, 14 Mar 2021 00:00:00 +0000</lastBuildDate>
+    <item>
+      <title>Building the vaccine allergy flow chart</title>
+      <dc:creator>Calum Polwart</dc:creator>
+      <link>https://www.chemo.org.uk/posts/2021-03-14-building-the-vaccine-allergy-flow-chart</link>
+      <description>A brief blog describing how we built the flow chart for the UK Chemotherapy Board Guidance for patients with a history of allergic response who are having the coronavirus vaccine.</description>
+      <guid>https://www.chemo.org.uk/posts/2021-03-14-building-the-vaccine-allergy-flow-chart</guid>
+      <pubDate>Sun, 14 Mar 2021 00:00:00 +0000</pubDate>
+      <media:content url="https://www.chemo.org.uk/posts/2021-03-14-building-the-vaccine-allergy-flow-chart/unnamed-chunk-1.png" medium="image" type="image/png" width="270" height="160"/>
+    </item>
+    <item>
+      <title>Are the vaccines working?</title>
+      <dc:creator>Calum Polwart</dc:creator>
+      <link>https://www.chemo.org.uk/posts/2021-03-14-are-the-vaccines-working</link>
+      <description>With much attention on the COVID-19 vaccines, I wanted to find a quick and easy way to use publically available data to see if they were working...</description>
+      <guid>https://www.chemo.org.uk/posts/2021-03-14-are-the-vaccines-working</guid>
+      <pubDate>Fri, 12 Feb 2021 00:00:00 +0000</pubDate>
+      <media:content url="https://github.com/polc1410/VaccineEffectiveness/raw/master/Rplot.png" medium="image" type="image/png"/>
+    </item>
+    <item>
+      <title>High Dose Dexamethasone</title>
+      <dc:creator>Brian MacKenna</dc:creator>
+      <dc:creator>Calum Polwart</dc:creator>
+      <link>https://www.chemo.org.uk/posts/2021-03-14-High-Dose-Dexamethasone</link>
+      <description>Guest blog post at The Data Lab about the use of High Dose Dexamethasone.</description>
+      <guid>https://www.chemo.org.uk/posts/2021-03-14-High-Dose-Dexamethasone</guid>
+      <pubDate>Thu, 28 Nov 2019 00:00:00 +0000</pubDate>
+    </item>
+  </channel>
+</rss>

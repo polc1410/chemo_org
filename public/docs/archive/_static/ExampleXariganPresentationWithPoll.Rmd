@@ -1,0 +1,55 @@
+---
+title: "Test Polling Presentation"
+subtitle: "⚔<br/>with xaringan"
+author: "Calum Polwart"
+institute: "chemo.org.uk"
+date: "Updated: `r Sys.Date()`"
+output:
+  xaringan::moon_reader:
+    lib_dir: libs
+    nature:
+      highlightStyle: github
+      highlightLines: true
+      countIncrementalSlides: false
+---
+
+background-image: url(https://upload.wikimedia.org/wikipedia/commons/b/be/Sharingan_triple.svg)
+
+```{r setup, include=FALSE}
+options(htmltools.dir.version = FALSE)
+```
+
+???
+
+Image credit: [Wikimedia Commons](https://commons.wikimedia.org/wiki/File:Sharingan_triple.svg)
+
+---
+
+The next slide will be you poll.
+
+It is made up using DirectPoll.com.  The Results link is:
+
+```
+<iframe 
+    src="https://directpoll.com/r?XDbzPBd3ixYqg8GCvsvX0jmkfhsI8NlQqP5VgKnMu", 
+    width="100%", 
+    height= "100%">
+</iframe>
+```
+
+When the poll isn't open yet - it will show the QR code.  There is a small play and pause button at the bottom that you can use to launch the poll.
+
+The user should see the question on their device they are using to poll with...
+
+When you click play the QR code will disappear - so you probably need to think about how that works...  The user then sees the question, clicks their answer and submits vote.
+
+You can ask multiple questions or have multiple polls.  
+
+You can choose to show live results etc.
+
+
+
+
+---
+
+<iframe src="https://directpoll.com/r?XDbzPBd3ixYqg8GCvsvX0jmkfhsI8NlQqP5VgKnMu", width="100%", height="100%"></iframe>

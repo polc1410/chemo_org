@@ -1,0 +1,29 @@
+{
+  "articles": [
+    {
+      "path": "about.html",
+      "title": "About this site",
+      "author": [],
+      "contents": "\r\nThis is a website with a mix of things, some opinion, some data processing, sometimes a collection of useful things I don’t want to loose or forget…\r\nchemo.org.uk is server for testing things, playing and experimenting. If you have a small data project that needs a home, that fits our ethos and genre, get in touch.\r\nIf you have useful content that might be worth posting here - let us know.\r\nContent on this site has not been peer reviewed. It is the opinion of the author, and opinions can change or sometimes be wrong. If you spot a factual error - let us know. If your opinion is different - feel free to debate, but don’t demand we change our opinions.\r\nHow is this site produced?\r\nYou can read more about how this site is hosted on our Servers page. The site is written in R Studio using R Markdown with the distill package. Published pages are uploaded to a private github repository (to hold a version history) and an n8n.io uses a github action to trigger a git pull on the server to download the latest version of the site. The About Me page uses the postcards packge.\r\n\r\n\r\n\r\n",
+      "last_modified": "2022-05-13T11:10:27+01:00"
+    },
+    {
+      "path": "index.html",
+      "title": "chemo.org.uk",
+      "description": "A website with a mix of things, some opinion, some data processing, sometimes a collection of useful things I don't want to loose or forget...\n",
+      "author": [],
+      "contents": "\r\n\r\n\r\n\r\n",
+      "last_modified": "2022-05-13T20:34:05+01:00"
+    },
+    {
+      "path": "Publications.html",
+      "title": "Publications",
+      "description": "A summary of my publications, posters etc\n",
+      "author": [],
+      "date": "Last updated: `r Sys.Date()`",
+      "contents": "\r\nPosters\r\nI usually try to publish my posters (things I wrote myself, or was a co-author on) to my ResearchGate account. However, I find Research Gate a bit tricky to navigate to find those posters sometimes. It is also more of a scientific place, and doesn’t provide somewhere to give more of a narrative approach to what the poster was trying to achieve or how it came to be.\r\nMy more recent posters follow the format of Mike Morrison’s #BetterPoster format. This video explains Mike’s theory on how scientific posters need to change.\r\n\r\n\r\n\r\n\r\n\r\n",
+      "last_modified": "2022-05-13T11:10:27+01:00"
+    }
+  ],
+  "collections": ["posts/posts.json", "posters/posters.json"]
+}
